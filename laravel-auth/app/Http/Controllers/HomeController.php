@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
@@ -66,13 +66,14 @@ class HomeController extends Controller
 
       try {
         $fileName = $user -> profPic;
-        $file = storage_path('app/public/profPic' . $fileName);
+        $file = 'public/profPic/' . $fileName;
+        // dd($file);
+        //dd($user, $fileName, $file);
 
-        File::delete($file);
+        Storage::delete($file);
+        // File::delete($file); se uso file sostituire use riga 7
 
-      } catch (\Exception $e) {
-
-      }
+      } catch (\Exception $e) {}
 
     }
 }
